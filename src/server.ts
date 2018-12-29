@@ -6,3 +6,4 @@ app.listen(() => {
   console.log(app.getLocalUrl());
 });
 
+export default app;

@@ -1,9 +1,7 @@
 process.env.NODE_ENV = 'test';
 
 import { assert } from 'chai';
-import { App } from '../../src/App/app';
-
-const app = new App(3000, 'NODETS');
+import app from '../../src/server';
 
 describe('App', () => {
   describe('getLocalUrl()', () => {
