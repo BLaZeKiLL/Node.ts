@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetRouter } from '../App/Router';
+import { GetRouter } from '../App/router';
 
 const router = GetRouter();
 
