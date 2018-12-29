@@ -1,7 +1,10 @@
-import { Router } from '../App/app';
+import { Request, Response } from 'express';
+import { GetRouter } from '../App/Router';
 
-Router.get('/', (req, res) => {
-    res.send('Hello World!');
+const router = GetRouter();
+
+router.get('/', (req: Request, res: Response) => {
+  res.send('Hello World!');
 });
 
-export default Router;
+export default router;

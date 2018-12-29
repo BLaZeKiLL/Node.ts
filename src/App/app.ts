@@ -4,8 +4,6 @@ import { Express } from 'express';
 
 import IndexRoutes from '../Routes/index';
 
-export const Router = express.Router();
-
 export class App {
 
   private static _Context: App;
