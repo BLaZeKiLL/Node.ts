@@ -1,6 +1,6 @@
-import express from 'express';
+import express, { Express } from 'express';
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import { Express } from 'express';
 
 import IndexRoutes from '../Routes/index';
 
@@ -9,10 +9,11 @@ export class App {
   private app: Express;
 
   constructor(
-    private PORT: number
+    private PORT: number,
+    private MONGODB_NAME: string
   ) {
     this.app = express();
-
+    this.setupMongoDB();
     this.setupBodyParser();
     this.setupRoutes();
   }
@@ -25,6 +26,10 @@ export class App {
     return `http://localhost:${this.PORT}/`;
   }
 
+  private setupMongoDB() {
+    mongoose.connect(this.getLocalMongoDBUrl(), { useNewUrlParser: true });
+  }
+
   private setupBodyParser(): void {
     this.app.use(bodyParser.urlencoded({extended: true}));
     this.app.use(bodyParser.text());
@@ -33,6 +38,10 @@ export class App {
 
   private setupRoutes(): void {
     this.app.use('/', IndexRoutes);
+  }
+
+  private getLocalMongoDBUrl(): string {
+    return `mongodb://localhost:27017/${this.MONGODB_NAME}`;
   }
 
 }
